@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PLUGIN_PATH="$TMUX_PLUGIN_MANAGER_PATH/tcp-relay-plugin"
+PLUGIN_PATH="$TMUX_PLUGIN_MANAGER_PATH/tmux-tcp-relay-plugin"
 SESSION="$(tmux display-message -p '#S')"  # 取得目前 session 名稱
 WIN="tcp_relay"
 PIDFILE="$HOME/.tmux_tcp_relay.pid"
@@ -8,8 +8,8 @@ SCRIPT="$PLUGIN_PATH/tcp-relay.py"
 ARGS=$(tmux show-option -gqv "@tcp-relay-args")
 
 create_window() {
-  tmux new-window -d -t "${SESSION}:" -n "$WIN" "python3  ${SCRIPT}"
-  #tmux new-window -d -t "${SESSION}:" -n "$WIN" "python3  ~/.tmux/plugins/tcp-relay-plugin/tcp-relay.py"
+  tmux new-window -d -t "${SESSION}:" -n "$WIN" "python3  ${SCRIPT} ${ARGS}"
+  #tmux new-window -d -t "${SESSION}:" -n "$WIN" "python3  ~/.tmux/plugins/tmux-tcp-relay-plugin/tcp-relay.py"
   #tmux new-window -d -t "${SESSION}:" -n "$WIN" "python3 ${SCRIPT}"
 }
 
@@ -17,10 +17,10 @@ toggle() {
   if [[ -f "$PIDFILE" ]]; then
     tmux kill-window -t "${SESSION}:$WIN"
     rm "$PIDFILE"
-    tmux display-message "🔴 tcp-relay-plugin: window removed"
+    tmux display-message "🔴 tmux-tcp-relay-plugin: window removed"
   else
     create_window
-    tmux display-message "🟢 tcp-relay-plugin: window created"
+    tmux display-message "🟢 tmux-tcp-relay-plugin: window created"
     echo "$SESSION:$WIN" > "$PIDFILE"
     # 自動切到該 window
     tmux select-window -t "${SESSION}:$WIN"
