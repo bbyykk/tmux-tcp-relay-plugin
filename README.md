@@ -35,6 +35,11 @@ set -g @tcp-relay-args 'tcp.relay.server.ip'
 
 > Replace `tcp.relay.server.ip` with your actual server IP on the LAN.
 
+### Alternative way as a TCP relay **client**
+You can use the 'nc' command directly in any pane or window
+```
+nc tcp.relay.server.ip 5555
+```
 ---
 
 ## 🔁 Toggle Relay
