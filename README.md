@@ -44,3 +44,4 @@ Press the following key binding to **toggle** the relay server or client:
 ```
 Prefix + t
 ```
+And it would create a new window that would share between every clients and server
