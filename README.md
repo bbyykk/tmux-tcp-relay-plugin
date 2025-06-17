@@ -20,6 +20,10 @@ This plugin allows multiple `tmux` sessions across different hosts within a **LA
 ---
 
 ## 🚀 Usage
+Add this line to your .tmux.conf
+```
+bind-key t run-shell "~/.tmux/plugins/tmux-tcp-relay-plugin/plugin.sh toggle"
+```
 
 ### Run as a TCP relay **server**
 
